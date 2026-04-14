@@ -1,0 +1,45 @@
+export const siteConfig = {
+  name: "SHOP EXPRESS ZM",
+  description:
+    "Your trusted online marketplace for local and international products, powered by Inland Express Zambia's shipping expertise.",
+  tagline: "Shop Local. Source Global. Deliver Everywhere.",
+  url: process.env.NEXT_PUBLIC_APP_URL || "https://shopexpresszm.com",
+  ogImage: "/og-image.jpg",
+  company: {
+    name: "Inland Express Zambia",
+    address: "Gardenia Road, Avondale, Lusaka",
+    phone: "+260 97 000 0000",
+    email: "info@shopexpresszm.com",
+    whatsapp: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "+260970000000",
+  },
+  links: {
+    whatsapp: `https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "+260970000000").replace(/\+/g, "")}`,
+  },
+  currency: {
+    code: "ZMW",
+    symbol: "K",
+    name: "Zambian Kwacha",
+  },
+  categories: [
+    "Electronics",
+    "Fashion",
+    "Beauty",
+    "Home & Kitchen",
+    "Groceries & Household",
+    "Office Supplies",
+    "Automotive Accessories",
+    "Imported Special Orders",
+  ],
+  deliveryAreas: [
+    "Lusaka",
+    "Kitwe",
+    "Ndola",
+    "Kabwe",
+    "Livingstone",
+    "Chipata",
+    "Solwezi",
+    "Kasama",
+    "Mansa",
+    "Mongu",
+  ],
+} as const;
