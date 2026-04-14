@@ -1,5 +1,6 @@
-import { auth } from "@/lib/auth";
 import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { getToken } from "next-auth/jwt";
 
 const publicRoutes = [
   "/",
@@ -35,20 +36,22 @@ function isPublicRoute(pathname: string): boolean {
   return false;
 }
 
-export default auth((req) => {
+export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
-  const isLoggedIn = !!req.auth;
-  const role = req.auth?.user?.role;
 
   // Allow public routes
   if (isPublicRoute(pathname)) return NextResponse.next();
 
+  const token = await getToken({ req, secret: process.env.AUTH_SECRET });
+
   // Redirect unauthenticated users to signin
-  if (!isLoggedIn) {
+  if (!token) {
     const signInUrl = new URL("/auth/signin", req.url);
     signInUrl.searchParams.set("callbackUrl", pathname);
     return NextResponse.redirect(signInUrl);
   }
+
+  const role = token.role as string;
 
   // Admin-only routes
   if (pathname.startsWith("/admin") && role !== "ADMIN") {
@@ -61,7 +64,7 @@ export default auth((req) => {
   }
 
   return NextResponse.next();
-});
+}
 
 export const config = {
   matcher: ["/((?!_next|static|favicon.ico|.*\\..*).*)"],
