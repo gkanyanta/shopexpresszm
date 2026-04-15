@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import {
   Search,
@@ -88,8 +89,15 @@ export function Header() {
               <div className="flex flex-col gap-4 mt-8">
                 <Link
                   href="/"
-                  className="text-xl font-bold text-zinc-900"
+                  className="flex items-center gap-2 text-xl font-bold text-zinc-900"
                 >
+                  <Image
+                    src={siteConfig.logo}
+                    alt={siteConfig.name}
+                    width={36}
+                    height={36}
+                    className="rounded"
+                  />
                   {siteConfig.name}
                 </Link>
                 <nav className="flex flex-col gap-2">
@@ -115,12 +123,16 @@ export function Header() {
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="bg-zinc-900 text-amber-400 font-bold text-lg px-2 py-1 rounded">
-              SE
-            </div>
+            <Image
+              src={siteConfig.logo}
+              alt={siteConfig.name}
+              width={40}
+              height={40}
+              className="rounded"
+            />
             <span className="hidden sm:block text-lg font-bold text-zinc-900">
-              SHOP EXPRESS
-              <span className="text-amber-500"> ZM</span>
+              Shop Express
+              <span className="text-amber-500"> Zambia</span>
             </span>
           </Link>
 
