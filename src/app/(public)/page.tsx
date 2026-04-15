@@ -1,4 +1,4 @@
-import { HeroSection } from "@/components/home/hero-section";
+import { HeroSlideshow } from "@/components/home/hero-slideshow";
 import { CategoriesSection } from "@/components/home/categories-section";
 import { FeaturedProducts } from "@/components/home/featured-products";
 import { WhyChooseUs } from "@/components/home/why-choose-us";
@@ -12,7 +12,7 @@ import { Newsletter } from "@/components/home/newsletter";
 export default function HomePage() {
   return (
     <>
-      <HeroSection />
+      <HeroSlideshow />
       <CategoriesSection />
       <FeaturedProducts />
       <WhyChooseUs />
